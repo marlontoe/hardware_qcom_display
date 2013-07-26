@@ -30,8 +30,14 @@ common_deps  :=
 kernel_includes :=
 
 # Executed only on QCOM BSPs
+# Explicitly exclude mako, since CM adds the QCOM make functions and triggers
+# this block incorrectly
+ifeq ($(TARGET_QCOM_OLD_BSP),)
+ifeq ($(filter mako occam,$(TARGET_DEVICE)),)
 ifeq ($(call is-vendor-board-platform,QCOM),true)
     common_flags += -DQCOM_BSP
     common_deps += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
     kernel_includes += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+endif
+endif
 endif
