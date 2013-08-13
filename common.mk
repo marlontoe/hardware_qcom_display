@@ -36,7 +36,7 @@ endif
 
 ifeq ($(call is-vendor-board-platform,QCOM),true)
 # Gross hack for mako precompiled kernel
-ifeq ($(filter mako flo deb occam,$(TARGET_DEVICE)),)
+ifeq ($(filter flo deb occam,$(TARGET_DEVICE)),)
     common_deps += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
     kernel_includes += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 endif
